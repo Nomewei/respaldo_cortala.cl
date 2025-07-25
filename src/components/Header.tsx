@@ -43,32 +43,17 @@ const Header: React.FC<HeaderProps> = ({ onGoHome, onShowPlans, onShowFaq, onSho
                         ))}
                     </nav>
                     <div className="md:hidden">
-                        <button onClick={() => setMobileMenuOpen(true)} className="text-gray-700 focus:outline-none">
-                            <MenuIcon />
-                        </button>
+                        <button onClick={() => setMobileMenuOpen(true)} className="text-gray-700 focus:outline-none"><MenuIcon /></button>
                     </div>
                 </div>
             </header>
-            
-            {/* Mobile Menu Overlay */}
-            <div 
-                className={`fixed inset-0 bg-black bg-opacity-50 z-50 transition-opacity md:hidden ${isMobileMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
-                onClick={() => setMobileMenuOpen(false)}
-            />
-            
-            {/* Mobile Menu Panel */}
-            <div
-                className={`fixed top-0 right-0 bottom-0 w-3/4 max-w-sm bg-white z-50 shadow-xl transition-transform transform md:hidden ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}
-            >
+            <div className={`fixed inset-0 bg-black bg-opacity-50 z-50 transition-opacity md:hidden ${isMobileMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`} onClick={() => setMobileMenuOpen(false)} />
+            <div className={`fixed top-0 right-0 bottom-0 w-3/4 max-w-sm bg-white z-50 shadow-xl transition-transform transform md:hidden ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
                  <div className="p-6 pt-20 flex flex-col h-full">
-                     <button onClick={() => setMobileMenuOpen(false)} className="absolute top-6 right-6 text-gray-500 hover:text-gray-800">
-                        <CloseIcon />
-                    </button>
+                     <button onClick={() => setMobileMenuOpen(false)} className="absolute top-6 right-6 text-gray-500 hover:text-gray-800"><CloseIcon /></button>
                     <nav className="flex flex-col space-y-4">
                          {navLinks.map(link => (
-                             <button key={link.label} onClick={() => handleMobileLinkClick(link.action)} className="text-left py-3 text-lg text-gray-700 hover:text-blue-600 transition">
-                                {link.label}
-                            </button>
+                             <button key={link.label} onClick={() => handleMobileLinkClick(link.action)} className="text-left py-3 text-lg text-gray-700 hover:text-blue-600 transition">{link.label}</button>
                         ))}
                     </nav>
                  </div>
@@ -76,5 +61,4 @@ const Header: React.FC<HeaderProps> = ({ onGoHome, onShowPlans, onShowFaq, onSho
         </>
     );
 };
-
 export default Header;
