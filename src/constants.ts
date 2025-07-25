@@ -1,0 +1,9 @@
+import { Plan } from './types';
+
+export const PLANS: Plan[] = [
+  { name: "Personal", slots: 1, price: 500 },
+  { name: "Dúo", slots: 2, price: 14990 },
+  { name: "Familiar", slots: 5, price: 28990 },
+];
+
+export const RECOMMENDED_PLAN_NAME = "Dúo";
