@@ -1,0 +1,8 @@
+Flask
+gunicorn
+mercadopago
+gspread
+google-auth-oauthlib
+cryptography
+pytz
+sendgrid
