@@ -18,6 +18,7 @@ const App: React.FC = () => {
     const [selectedPlan, setSelectedPlan] = useState<Plan | null>(null);
     const [contacts, setContacts] = useState<string[]>([]);
     const [referralCode, setReferralCode] = useState<string | null>(null);
+    const [userReferralCode, setUserReferralCode] = useState<string | null>(null);
     
     const [isSuccessModalOpen, setSuccessModalOpen] = useState(false);
     const [isFaqModalOpen, setFaqModalOpen] = useState(false);
@@ -29,6 +30,7 @@ const App: React.FC = () => {
         const urlParams = new URLSearchParams(window.location.search);
         const refParam = urlParams.get('ref');
         const paymentStatus = urlParams.get('status');
+        const newReferralCode = urlParams.get('newRef');
 
         if (refParam) {
             setReferralCode(refParam);
@@ -40,7 +42,8 @@ const App: React.FC = () => {
             setPlans(referredPlans);
         }
 
-        if (paymentStatus === 'success') {
+        if (paymentStatus === 'success' && newReferralCode) {
+            setUserReferralCode(newReferralCode);
             setSuccessModalOpen(true);
             window.history.replaceState({}, document.title, "/");
         }
@@ -82,6 +85,8 @@ const App: React.FC = () => {
     const handlePaymentSubmit = useCallback(async (payer: { firstName: string; lastName: string }) => {
         if (!selectedPlan) return;
 
+        const newRefCode = `REF${Math.random().toString(36).substring(2, 8).toUpperCase()}`;
+        
         try {
             const preference = await createCheckoutPreference({
                 title: `${selectedPlan.name} (${contacts.length} slots)`,
@@ -90,6 +95,7 @@ const App: React.FC = () => {
                 payer_lastname: payer.lastName,
                 contacts_to_protect: contacts,
                 referral_code: referralCode,
+                new_referral_code: newRefCode,
             });
 
             if (preference.init_point) {
@@ -119,7 +125,7 @@ const App: React.FC = () => {
                         contacts={contacts}
                         setContacts={setContacts}
                         onContinue={handleNavigateToPayment}
-                        onBack={() => setStep(Step.Plans)}
+                        onBack={handleBack}
                     />
                 );
             case Step.Payment:
@@ -128,7 +134,7 @@ const App: React.FC = () => {
                         plan={selectedPlan}
                         contacts={contacts}
                         onSubmit={handlePaymentSubmit}
-                        onBack={() => setStep(Step.Contacts)}
+                        onBack={handleBack}
                     />
                 );
             default:
@@ -163,7 +169,11 @@ const App: React.FC = () => {
                 </div>
             </footer>
 
-            <SuccessModal isOpen={isSuccessModalOpen} onClose={() => setSuccessModalOpen(false)} />
+            <SuccessModal 
+                isOpen={isSuccessModalOpen} 
+                onClose={() => setSuccessModalOpen(false)}
+                referralCode={userReferralCode}
+            />
 
             <Modal title="Preguntas Frecuentes (FAQ)" isOpen={isFaqModalOpen} onClose={() => setFaqModalOpen(false)}>
                 <p>Aquí irá el contenido de las preguntas frecuentes...</p>
