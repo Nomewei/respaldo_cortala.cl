@@ -1,5 +1,3 @@
-# app.py - El "Gerente" de la tienda, ahora sirviendo a React
-
 import flask
 from flask import send_from_directory
 import mercadopago
@@ -16,22 +14,17 @@ from sendgrid.helpers.mail import Mail
 
 # --- CONFIGURACIÓN INICIAL ---
 
-# ¡NUEVO! Le decimos a Flask que nuestra "página web" (el frontend)
+# Le decimos a Flask que nuestra "página web" (el frontend)
 # está en la carpeta 'dist' que React crea para nosotros.
 app = flask.Flask(__name__, static_folder='dist', static_url_path='/')
 
-# ... (El resto de tu configuración de Mercado Pago, Google Sheets, etc., no cambia)
-# ... (Te la omito aquí para ser breve, pero debe estar en tu archivo)
-# 1. SDK DE MERCADO PAGO
+# --- El resto de la configuración que ya conoces ---
 mp_token = os.environ.get("MERCADOPAGO_TOKEN")
 sdk = mercadopago.SDK(mp_token) if mp_token else None
 
-# 2. ENCRIPTACIÓN
 encryption_key = os.environ.get("ENCRYPTION_KEY")
 fernet = Fernet(encryption_key.encode()) if encryption_key else None
 
-# 3. GOOGLE SHEETS
-# (Tu código de conexión a Google Sheets va aquí, sin cambios)
 worksheet = None
 try:
     creds_json_str = os.environ.get('GOOGLE_CREDENTIALS_JSON')
@@ -48,10 +41,7 @@ try:
 except Exception as e:
     print(f"ERROR al configurar Google Sheets: {e}")
 
-
-# 4. ALMACÉN TEMPORAL DE ÓRDENES
 pending_orders = {}
-
 
 # --- FUNCIONES AUXILIARES (Sin cambios) ---
 def encrypt_data(data):
@@ -66,20 +56,15 @@ def decrypt_data(encrypted_data):
         return None
 
 def send_confirmation_email(customer_email, data):
-    # (Tu código para enviar email va aquí, sin cambios)
-    pass
+    pass # La lógica de SendGrid va aquí
 
-
-# --- RUTAS DE LA APLICACIÓN (API ENDPOINTS - Sin cambios) ---
-
+# --- RUTAS DE LA API (Sin cambios) ---
 @app.route("/create_preference", methods=["POST"])
 def create_preference():
-    # (Tu código de /create_preference va aquí, sin cambios)
     try:
         data = flask.request.get_json()
         external_reference_id = str(uuid.uuid4())
         
-        # Simulamos la URL de éxito que ahora viene desde el frontend
         success_url = data.pop("back_urls", {}).get("success", f"{flask.request.host_url}?status=success")
 
         pending_orders[external_reference_id] = {
@@ -106,28 +91,20 @@ def create_preference():
         print(f"Error en /create_preference: {e}")
         return flask.jsonify({"error": str(e)}), 500
 
-
 @app.route("/webhook", methods=["POST"])
 def receive_webhook():
-    # (Tu código de /webhook va aquí, sin cambios)
+    # La lógica del webhook va aquí
     return flask.Response(status=200)
 
-
-# --- ¡NUEVO! RUTA PARA SERVIR LA APLICACIÓN DE REACT ---
-
-# Esta es la ruta "catch-all". Cualquier URL que no sea una de las de arriba
-# (como /create_preference o /webhook) será manejada por esta función.
+# --- RUTA PARA SERVIR LA APP DE REACT ---
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def serve_react_app(path):
-    # Si la ruta pedida existe como un archivo estático en 'dist' (como un CSS o un JS), sírvelo.
     if path != "" and os.path.exists(os.path.join(app.static_folder, path)):
         return send_from_directory(app.static_folder, path)
-    # Si no, sirve el index.html principal. React se encargará del resto.
     else:
         return send_from_directory(app.static_folder, 'index.html')
 
-
-# --- ARRANQUE DEL SERVIDOR (Sin cambios) ---
+# --- ARRANQUE ---
 if __name__ == "__main__":
     app.run(port=5000, debug=False)
