@@ -23,7 +23,7 @@ const Header: React.FC<HeaderProps> = ({ onGoHome, onShowPlans, onShowFaq, onSho
         { label: "FAQ's", action: onShowFaq },
         { label: "Términos", action: onShowTerms },
         { label: "Avisar Incumplimiento", action: onShowBreach },
-        { label: "Ayuda", action: onShowContact },
+        { label: "Contacto", action: onShowContact },
     ];
 
     return (
@@ -33,7 +33,7 @@ const Header: React.FC<HeaderProps> = ({ onGoHome, onShowPlans, onShowFaq, onSho
                     <button onClick={onGoHome} className="flex items-center gap-2 text-2xl font-bold text-blue-700">
                         <LogoIcon />
                         <div className="flex items-baseline">
-                            <span className="text-2xl font-bold text-[#1d4ed8]">órtala</span>
+                            <span className="text-2xl font-bold text-[#1d4ed8]">Cortala</span>
                             <span className="text-2xl font-bold text-[#3b82f6]">.cl</span>
                         </div>
                     </button>
