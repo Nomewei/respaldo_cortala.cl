@@ -112,7 +112,7 @@ const App: React.FC = () => {
             </footer>
             <SuccessModal isOpen={isSuccessModalOpen} onClose={() => setSuccessModalOpen(false)} />
             <Modal title="Preguntas Frecuentes (FAQ)" isOpen={isFaqModalOpen} onClose={() => setFaqModalOpen(false)}><p>Aquí irá el contenido...</p></Modal>
-            <Modal title="Términos y Condiciones" isOpen={isTermsModalOpen} onClose={() => setTermsModalOpen(false)}><p>Aquí irá el contenido...</p></Modal>
+            <Modal title="Términos y Condiciones" isOpen={isTermsModalOpen} onClose={() => setTermsModalOpen(false)}><p>Bienvenido a Córtala.cl. Estos términos y condiciones describen las reglas y regulaciones para el uso de nuestro sitio web y servicio.</p></Modal>
             <Modal title="Avisar Incumplimiento" isOpen={isBreachModalOpen} onClose={() => setBreachModalOpen(false)}><p>Aquí irá el contenido...</p></Modal>
             <Modal title="Ayuda y Contacto" isOpen={isContactModalOpen} onClose={() => setContactModalOpen(false)}><p>Aquí irá el contenido...</p></Modal>
         </div>
