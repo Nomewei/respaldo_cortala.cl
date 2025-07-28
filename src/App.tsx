@@ -111,20 +111,20 @@ const App: React.FC = () => {
                 </div>
             </footer>
             <SuccessModal isOpen={isSuccessModalOpen} onClose={() => setSuccessModalOpen(false)} />
-            <Modal title="Preguntas Frecuentes (FAQ)" isOpen={isFaqModalOpen} onClose={() => setFaqModalOpen(false)}><p>question: "¿Qué es exactamente el 'No Molestar' del SERNAC?",
-        answer: "Es una herramienta oficial del Servicio Nacional del Consumidor (SERNAC) en Chile que permite a las personas solicitar que sus números de teléfono y correos electrónicos sean eliminados de las listas de marketing y promociones de las empresas."
+            <Modal title="Preguntas Frecuentes (FAQ)" isOpen={isFaqModalOpen} onClose={() => setFaqModalOpen(false)}><p>"¿Qué es exactamente el 'No Molestar' del SERNAC?",
+       "Es una herramienta oficial del Servicio Nacional del Consumidor (SERNAC) en Chile que permite a las personas solicitar que sus números de teléfono y correos electrónicos sean eliminados de las listas de marketing y promociones de las empresas."
     },
     {
-        question: "Mi plan protege contra el 100% de las empresas?",
-        answer: "Nuestro servicio gestiona tu inscripción en la plataforma oficial, lo que obliga a la gran mayoría de las empresas a dejar de contactarte. Sin embargo, nuestro algoritmo se enfoca en las empresas más 'insistentes' y con mayor volumen de quejas, por lo que podrías seguir recibiendo comunicaciones de empresas más pequeñas o nuevas. Si esto ocurre, puedes usar nuestra herramienta 'Avisar Incumplimiento' para que tomemos acciones adicionales."
+       "Mi plan protege contra el 100% de las empresas?",
+       "Nuestro servicio gestiona tu inscripción en la plataforma oficial, lo que obliga a la gran mayoría de las empresas a dejar de contactarte. Sin embargo, nuestro algoritmo se enfoca en las empresas más 'insistentes' y con mayor volumen de quejas, por lo que podrías seguir recibiendo comunicaciones de empresas más pequeñas o nuevas. Si esto ocurre, puedes usar nuestra herramienta 'Avisar Incumplimiento' para que tomemos acciones adicionales."
     },
     {
-        question: "¿Este es un pago único o una suscripción?",
-        answer: "Es un pago 100% único por la gestión. No hay cargos recurrentes ni suscripciones ocultas. Pagas una vez y nosotros nos encargamos del resto."
+       "¿Este es un pago único o una suscripción?",
+       "Es un pago 100% único por la gestión. No hay cargos recurrentes ni suscripciones ocultas. Pagas una vez y nosotros nos encargamos del resto."
     },
     {
-        question: "¿Cuánto tiempo tarda en hacer efecto el registro?",
-        answer: "Una vez que realizas el pago, nosotros iniciamos la gestión en un plazo de 24 a 48 horas hábiles. La ley otorga a las empresas un plazo para actualizar sus sistemas, por lo que la reducción del SPAM es gradual y puede tomar algunos días en ser totalmente efectiva."</p></Modal>
+       "¿Cuánto tiempo tarda en hacer efecto el registro?",
+       "Una vez que realizas el pago, nosotros iniciamos la gestión en un plazo de 24 a 48 horas hábiles. La ley otorga a las empresas un plazo para actualizar sus sistemas, por lo que la reducción del SPAM es gradual y puede tomar algunos días en ser totalmente efectiva."</p></Modal>
             <Modal title="Términos y Condiciones" isOpen={isTermsModalOpen} onClose={() => setTermsModalOpen(false)}><p>Bienvenido a Córtala.cl. Estos términos y condiciones describen las reglas y regulaciones para el uso de nuestro sitio web y servicio. Córtala.cl ofrece un servicio de gestión de pago único para inscribir los datos de contacto (números de teléfono y/o correos electrónicos) proporcionados por el cliente en el registro "No Molestar" del Servicio Nacional del Consumidor (SERNAC) de Chile. Al acceder y utilizar nuestro servicio, usted acepta estar sujeto a estos Términos y Condiciones. Si no está de acuerdo con alguna parte de los términos, no puede utilizar nuestro servicio. Usted nos autoriza a utilizar los datos personales que nos proporciona (nombre, apellido, y los contactos a proteger) con el único y exclusivo fin de realizar la gestión de inscripción ante el SERNAC. No compartiremos su información con terceros para fines distintos a los del servicio contratado. Nuestro servicio se limita a la correcta gestión de la inscripción. No podemos garantizar la eliminación total e inmediata del SPAM, ya que las empresas tienen plazos legales para actualizar sus bases de datos. No nos hacemos responsables por las comunicaciones que pueda recibir de empresas que no cumplan con la normativa del SERNAC.</p></Modal>
             <Modal title="Avisar Incumplimiento" isOpen={isBreachModalOpen} onClose={() => setBreachModalOpen(false)}><p>Aquí irá el contenido...</p></Modal>
             <Modal title="Ayuda y Contacto" isOpen={isContactModalOpen} onClose={() => setContactModalOpen(false)}><p>Aquí irá el contenido...</p></Modal>
