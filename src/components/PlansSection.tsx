@@ -13,10 +13,10 @@ const PlansSection: React.FC<PlansSectionProps> = ({ plans, onPlanSelect, hasRef
     return (
         <section id="plans-section" className="py-16 lg:py-24 fade-in">
             <h2 className="text-3xl font-bold text-center mb-2">Paso 1: Elige tu plan</h2>
-            <p className="text-center text-gray-600 mb-12">Un "slot" te permite proteger un Teléfono o un Correo electrónico. ¡Tú eliges!</p>
+            <p className="text-center text-gray-600 mb-12">Podrás proteger uno o más Teléfonos y/o Correos electrónicos. ¡Tú eliges!</p>
             {hasReferral && (
                 <div className="mb-8 text-center bg-green-100 text-green-800 p-4 rounded-lg max-w-2xl mx-auto border border-green-200">
-                    <p className="font-semibold">¡Gracias a tu referido, tienes 1 slot extra en cualquier plan que elijas!</p>
+                    <p className="font-semibold">¡Gracias a tu referido, tienes 1 protección extra en cualquier plan que elijas!</p>
                 </div>
             )}
             <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
