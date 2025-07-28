@@ -107,7 +107,7 @@ const App: React.FC = () => {
             </main>
             <footer className="bg-gray-800 text-white mt-16">
                 <div className="container mx-auto px-6 py-8 text-center text-gray-400">
-                    <p>© {new Date().getFullYear()} Córtala.cl. Todos los derechos reservados.</p>
+                    <p>© {new Date().getFullYear()} Cortala.cl. Todos los derechos reservados.</p>
                 </div>
             </footer>
             <SuccessModal isOpen={isSuccessModalOpen} onClose={() => setSuccessModalOpen(false)} />
