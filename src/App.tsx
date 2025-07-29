@@ -82,7 +82,7 @@ const Modal: React.FC<{ title: string; children: React.ReactNode; isOpen: boolea
 const SuccessModal: React.FC<{ isOpen: boolean; onClose: () => void; }> = ({ isOpen, onClose }) => {
     if (!isOpen) return null;
     return (
-        <Modal title="¡Pago Exitoso!" onClose={onClose}>
+        <Modal title="¡Pago Exitoso!" isOpen={isOpen} onClose={onClose}>
             <div className="text-center">
                 <p className="text-lg">¡Gracias por tu compra! Hemos recibido tu pago y comenzaremos la gestión de tus contactos a la brevedad.</p>
             </div>
