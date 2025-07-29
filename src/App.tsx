@@ -481,45 +481,47 @@ const App: React.FC = () => {
     };
     
     return (
-        <div className="flex flex-col min-h-screen">
-            <Header 
-                onGoHome={handleGoHome}
-                onShowPlans={handleStart}
-                onShowFaq={() => setFaqModalOpen(true)}
-                onShowTerms={() => setTermsModalOpen(true)}
-                onShowBreach={() => setBreachModalOpen(true)}
-                onShowContact={() => setContactModalOpen(true)}
-            />
-            <main id="main-content" className="flex-grow">
-                {step === Step.Hero ? renderStepContent() : (
-                    <div className="container mx-auto px-6">
-                        <div className="py-8">
-                            <ProgressBar step={step} />
+        <Router>
+            <div className="flex flex-col min-h-screen">
+                <Header 
+                    onGoHome={handleGoHome}
+                    onShowPlans={handleStart}
+                    onShowFaq={() => setFaqModalOpen(true)}
+                    onShowTerms={() => setTermsModalOpen(true)}
+                    onShowBreach={() => setBreachModalOpen(true)}
+                    onShowContact={() => setContactModalOpen(true)}
+                />
+                <main id="main-content" className="flex-grow">
+                    {step === Step.Hero ? renderStepContent() : (
+                        <div className="container mx-auto px-6">
+                            <div className="py-8">
+                                <ProgressBar step={step} />
+                            </div>
+                            {renderStepContent()}
                         </div>
-                        {renderStepContent()}
+                    )}
+                </main>
+                <footer className="bg-gray-800 text-white mt-16">
+                    <div className="container mx-auto px-6 py-8 text-center text-gray-400">
+                        <p>© {new Date().getFullYear()} Cortala.cl. Todos los derechos reservados.</p>
                     </div>
-                )}
-            </main>
-            <footer className="bg-gray-800 text-white mt-16">
-                <div className="container mx-auto px-6 py-8 text-center text-gray-400">
-                    <p>© {new Date().getFullYear()} Cortala.cl. Todos los derechos reservados.</p>
-                </div>
-            </footer>
-            <SuccessModal isOpen={isSuccessModalOpen} onClose={() => setSuccessModalOpen(false)} />
-            
-            <Modal title="Preguntas Frecuentes (FAQ)" isOpen={isFaqModalOpen} onClose={() => setFaqModalOpen(false)}>
-                <FaqContent />
-            </Modal>
-            <Modal title="Términos y Condiciones" isOpen={isTermsModalOpen} onClose={() => setTermsModalOpen(false)}>
-                <TermsContent />
-            </Modal>
-            <Modal title="Avisar Incumplimiento" isOpen={isBreachModalOpen} onClose={() => setBreachModalOpen(false)}>
-                <p>Aquí irá el formulario de aviso de incumplimiento...</p>
-            </Modal>
-            <Modal title="Ayuda y Contacto" isOpen={isContactModalOpen} onClose={() => setContactModalOpen(false)}>
-                <p>Aquí irá el contenido de ayuda y contacto...</p>
-            </Modal>
-        </div>
+                </footer>
+                <SuccessModal isOpen={isSuccessModalOpen} onClose={() => setSuccessModalOpen(false)} />
+                
+                <Modal title="Preguntas Frecuentes (FAQ)" isOpen={isFaqModalOpen} onClose={() => setFaqModalOpen(false)}>
+                    <FaqContent />
+                </Modal>
+                <Modal title="Términos y Condiciones" isOpen={isTermsModalOpen} onClose={() => setTermsModalOpen(false)}>
+                    <TermsContent />
+                </Modal>
+                <Modal title="Avisar Incumplimiento" isOpen={isBreachModalOpen} onClose={() => setBreachModalOpen(false)}>
+                    <p>Aquí irá el formulario de aviso de incumplimiento...</p>
+                </Modal>
+                <Modal title="Ayuda y Contacto" isOpen={isContactModalOpen} onClose={() => setContactModalOpen(false)}>
+                    <p>Aquí irá el contenido de ayuda y contacto...</p>
+                </Modal>
+            </div>
+        </Router>
     );
 };
 export default App;
